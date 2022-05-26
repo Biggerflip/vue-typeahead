@@ -1,8 +1,8 @@
 "use strict";
 
-var _Object$defineProperty = require("@babel/runtime-corejs2/core-js/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
 
-var _interopRequireDefault = require("@babel/runtime-corejs2/helpers/interopRequireDefault");
+var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
 _Object$defineProperty(exports, "__esModule", {
   value: true
@@ -10,11 +10,13 @@ _Object$defineProperty(exports, "__esModule", {
 
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/defineProperty"));
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/defineProperty"));
 
-var _assign = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/object/assign"));
+var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/slice"));
 
-var _promise = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/promise"));
+var _assign = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/assign"));
+
+var _promise = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/promise"));
 
 var _vue = require("vue");
 
@@ -59,7 +61,7 @@ var _default = {
         if (response && _this.query) {
           var data = response.data;
           data = _this.prepareResponseData ? _this.prepareResponseData(data) : data;
-          _this.items = _this.limit ? data.slice(0, _this.limit) : data;
+          _this.items = _this.limit ? (0, _slice["default"])(data).call(data, 0, _this.limit) : data;
           _this.current = -1;
           _this.loading = false;
 
