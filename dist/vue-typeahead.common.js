@@ -1,26 +1,24 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
+var _Object$defineProperty = require("@babel/runtime-corejs2/core-js/object/define-property");
+
+var _interopRequireDefault = require("@babel/runtime-corejs2/helpers/interopRequireDefault");
+
+_Object$defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _promise = require('babel-runtime/core-js/promise');
+exports["default"] = void 0;
 
-var _promise2 = _interopRequireDefault(_promise);
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/defineProperty"));
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/object/assign"));
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _promise = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/promise"));
 
-var _assign = require('babel-runtime/core-js/object/assign');
+var _vue = require("vue");
 
-var _assign2 = _interopRequireDefault(_assign);
-
-var _vue = require('vue');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
+var _default = {
   data: function data() {
     return {
       items: [],
@@ -31,8 +29,6 @@ exports.default = {
       queryParamName: 'q'
     };
   },
-
-
   computed: {
     hasItems: function hasItems() {
       return this.items.length > 0;
@@ -44,7 +40,6 @@ exports.default = {
       return !!this.query;
     }
   },
-
   methods: {
     update: function update() {
       var _this = this;
@@ -60,7 +55,6 @@ exports.default = {
       }
 
       this.loading = true;
-
       this.fetch().then(function (response) {
         if (response && _this.query) {
           var data = response.data;
@@ -87,15 +81,14 @@ exports.default = {
       }
 
       var src = this.queryParamName ? this.src : this.src + this.query;
-
-      var params = this.queryParamName ? (0, _assign2.default)((0, _defineProperty3.default)({}, this.queryParamName, this.query), this.data) : this.data;
-
-      var cancel = new _promise2.default(function (resolve) {
+      var params = this.queryParamName ? (0, _assign["default"])((0, _defineProperty2["default"])({}, this.queryParamName, this.query), this.data) : this.data;
+      var cancel = new _promise["default"](function (resolve) {
         return _this2.cancel = resolve;
       });
-      var request = this.$http.get(src, { params: params });
-
-      return _promise2.default.race([cancel, request]);
+      var request = this.$http.get(src, {
+        params: params
+      });
+      return _promise["default"].race([cancel, request]);
     },
     cancel: function cancel() {},
     reset: function reset() {
@@ -137,3 +130,4 @@ exports.default = {
     }
   }
 };
+exports["default"] = _default;
