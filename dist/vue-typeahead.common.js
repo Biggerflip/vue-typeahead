@@ -1,24 +1,13 @@
 "use strict";
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
-
-var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
-
-_Object$defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
 exports["default"] = void 0;
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/defineProperty"));
-
-var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/slice"));
-
-var _assign = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/assign"));
-
-var _promise = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/promise"));
-
 var _vue = require("vue");
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var _default = {
   data: function data() {
@@ -61,7 +50,7 @@ var _default = {
         if (response && _this.query) {
           var data = response.data;
           data = _this.prepareResponseData ? _this.prepareResponseData(data) : data;
-          _this.items = _this.limit ? (0, _slice["default"])(data).call(data, 0, _this.limit) : data;
+          _this.items = _this.limit ? data.slice(0, _this.limit) : data;
           _this.current = -1;
           _this.loading = false;
 
@@ -83,14 +72,14 @@ var _default = {
       }
 
       var src = this.queryParamName ? this.src : this.src + this.query;
-      var params = this.queryParamName ? (0, _assign["default"])((0, _defineProperty2["default"])({}, this.queryParamName, this.query), this.data) : this.data;
-      var cancel = new _promise["default"](function (resolve) {
+      var params = this.queryParamName ? Object.assign(_defineProperty({}, this.queryParamName, this.query), this.data) : this.data;
+      var cancel = new Promise(function (resolve) {
         _this2.cancel = resolve;
       });
       var request = this.$http.get(src, {
         params: params
       });
-      return _promise["default"].race([cancel, request]);
+      return Promise.race([cancel, request]);
     },
     cancel: function cancel() {},
     reset: function reset() {
