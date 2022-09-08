@@ -72,8 +72,8 @@ export default {
         ? Object.assign({ [this.queryParamName]: this.query }, this.data)
         : this.data
 
-      let cancel = new Promise((resolve) => this.cancel = resolve)
-      let request = this.$http.get(src, { params })
+      const cancel = new Promise((resolve) => { this.cancel = resolve })
+      const request = this.$http.get(src, { params })
 
       return Promise.race([cancel, request])
     },

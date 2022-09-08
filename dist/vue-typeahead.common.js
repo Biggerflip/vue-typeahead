@@ -85,7 +85,7 @@ var _default = {
       var src = this.queryParamName ? this.src : this.src + this.query;
       var params = this.queryParamName ? (0, _assign["default"])((0, _defineProperty2["default"])({}, this.queryParamName, this.query), this.data) : this.data;
       var cancel = new _promise["default"](function (resolve) {
-        return _this2.cancel = resolve;
+        _this2.cancel = resolve;
       });
       var request = this.$http.get(src, {
         params: params
